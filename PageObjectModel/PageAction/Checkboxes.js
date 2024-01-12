@@ -61,11 +61,15 @@ export class CheckboxesMethods {
     cy.get(':nth-child(3) > :nth-child(1) > :nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-input').clear().type('321').should('have.value', '321')
     cy.get(':nth-child(3) > :nth-child(1) > :nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-input').clear().type('231').should('have.value', '231')
     cy.get(':nth-child(3) > :nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-input').clear().type('333').should('have.value', '333')
-    const selectedDay = '15';
-    const selectedYear = '2023';
-    cy.get(':nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-date-wrapper > .oxd-date-input > .oxd-icon').click()
-    cy.get('.datepicker-days').contains('.day', selectedDay).click();
-    cy.get('.datepicker-years').contains('.year', selectedYear).click();
+    // const selectedDay = '15';
+    // const selectedYear = '2023';
+    cy.get(':nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-date-wrapper > .oxd-date-input > .oxd-icon').click().type('2023-01-15')
+      // cy.get('.datepicker-days').contains('.day', selectedDay).click();
+      // cy.get('.datepicker-years').contains('.year', selectedYear).click();
+      .wait(2000)
+    cy.get(':nth-child(5) > :nth-child(1) > :nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-select-wrapper > .oxd-select-text')
+      .click({ force: true });
+    // cy.get('.orangehrm-card-container > .oxd-form > .oxd-form-row > .oxd-grid-3 > .oxd-grid-item > .oxd-input-group > :nth-child(2) > .oxd-select-wrapper > .oxd-select-text').click()
 
 
 
