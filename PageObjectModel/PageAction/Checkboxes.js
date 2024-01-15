@@ -68,10 +68,20 @@ export class CheckboxesMethods {
       // cy.get('.datepicker-years').contains('.year', selectedYear).click();
       .wait(2000)
     cy.get(':nth-child(5) > :nth-child(1) > :nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-select-wrapper > .oxd-select-text')
-      .click({ force: true });
-    // cy.get('.orangehrm-card-container > .oxd-form > .oxd-form-row > .oxd-grid-3 > .oxd-grid-item > .oxd-input-group > :nth-child(2) > .oxd-select-wrapper > .oxd-select-text').click()
-
-
+      .click({ force: true })
+    cy.contains('.oxd-select-option', 'Afghan').should('be.visible').click()
+    cy.get(':nth-child(5) > :nth-child(1) > :nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-select-wrapper > .oxd-select-text').click({ multiple: true })
+    cy.get(':nth-child(5) > :nth-child(1) > :nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-select-wrapper > .oxd-select-text').contains('Married').click().should('be.visible')
+    cy.get(':nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-date-wrapper > .oxd-date-input > .oxd-input').clear().click().type('2023-01-23')
+    cy.get(':nth-child(2) > :nth-child(2) > .oxd-radio-wrapper > label').click()
+    cy.get(':nth-child(7) > .oxd-grid-3 > :nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-input').click().type('test')
+    cy.get(':nth-child(2) > .oxd-checkbox-wrapper > label > .oxd-checkbox-input > .oxd-icon').click()
+    cy.get(':nth-child(1) > .oxd-form > .oxd-form-actions > .oxd-button').click()
+    cy.get('.orangehrm-card-container > .oxd-form > .oxd-form-row > .oxd-grid-3 > .oxd-grid-item > .oxd-input-group > :nth-child(2) > .oxd-select-wrapper > .oxd-select-text').click({ multiple: true }) // Use { multiple: true } to allow clicking multiple elements
+    cy.contains('A+').click()
+    cy.get('.orangehrm-card-container > .oxd-form > .oxd-form-actions > .oxd-button').click()
+    cy.get('.orangehrm-action-header > .oxd-button').click()
+    cy.get('.oxd-file-input-div').selectFile(filePath, { force: true });
 
 
 
