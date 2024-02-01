@@ -7,10 +7,16 @@ describe('Test1 for ecommrece', () => {
         nopeCommerce.Buildyourowncomputer()
 
     })
-    it.only('By shoes and aplly filter', () => {
+    it('By shoes and aplly filter', () => {
         cy.visit('https://demo.nopcommerce.com/')
         nopeCommerce.Addshoestfilter()
 
     })
+    it.only('By shoes and aplly filter', () => {
+        cy.visit('https://demo.nopcommerce.com/')
+        nopeCommerce.Addtowishlist()
+
+    })
+
 
 })

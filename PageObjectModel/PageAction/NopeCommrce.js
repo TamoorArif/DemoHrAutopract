@@ -12,9 +12,15 @@ export class Nopecoommerce {
         this.Addtocarddetails()
     }
     Addtocarddetails() {
-        cy.get('.content').should('contain', 'The product has been added to your shopping cart').wait(2000)
-        cy.get('.content > a').click()
+        cy.get('.content').should('contain', 'The product has been added to your shopping cart')
+        cy.log('After getting the .content element')
+        cy.get('.content > a').should('be.visible').click()
+        cy.log('After getting the .content element').wait(3000)
         cy.get('#checkout').click()
+        cy.get('#ui-id-2').contains('Terms of service')
+        cy.get('.ui-button').click()
+        cy.get('#termsofservice').click()
+        cy.get('#checkout').click().wait(4000)
         cy.get('.checkout-as-guest-button').click().wait(3000)
         cy.get('#BillingNewAddress_FirstName').type('tamioor')
         cy.get('#BillingNewAddress_LastName').type('khan')
@@ -46,5 +52,27 @@ export class Nopecoommerce {
         cy.get('#add-to-cart-button-25').click({ force: true }).wait(2000)
         this.Addtocarddetails()
     }
+    Addtowishlist() {
+        cy.get('.notmobile > :nth-child(3) > [href="/apparel"]').wait(3000).click();
+        cy.get(':nth-child(1) > .sub-category-item > .title > a').click()
+        cy.get('#attribute-option-15').should('be.visible').click().wait(2000)
+        cy.get('.product-box-add-to-cart-button').click({ force: true })
+        cy.get('#product_attribute_9').select('8').wait(1000)
+        cy.get('#add-to-wishlist-button-25').click().wait(3000)
+        cy.get('.content').contains('The product has been added to your wishlist')
+
+
+    }
 
 }
+
+
+// const checkout = true
+
+// while(checkout === true) {
+
+//     if() {
+//         checkout = false
+//     }
+//     cy.get('#add-to-cart-button-25').click({ force: true }).wait(2000)
+// }

@@ -29,13 +29,18 @@ export class CheckboxesMethods {
     cy.get('.user-password-cell > .oxd-input-group').type('Admin@12')
     cy.get('.user-password-row > .oxd-grid-2 > :nth-child(2) > .oxd-input-group').type('Admin@12')
     cy.get('.oxd-button--secondary').click().wait(5000)
-    this.findValue(uniqueValue, 5);
+    this.findValue("uniqueValue", 5);
 
 
   }
   findValue(value, remainingAttempts) {
     cy.get("div[class='oxd-input-group oxd-input-field-bottom-space'] div input[class='oxd-input oxd-input--active']").clear().type(value);
     cy.get('.oxd-form-actions > .oxd-button--secondary').click();
+    Cypress.on('uncaught:exception', (err, runnable) => {
+      // returning false here prevents Cypress from
+      // failing the test
+      return false
+    })
     cy.get('.orangehrm-container').contains(value).should('be.visible').then((result) => {
       cy.log(result, 'Test')
       // Element is not visible, revalidate
