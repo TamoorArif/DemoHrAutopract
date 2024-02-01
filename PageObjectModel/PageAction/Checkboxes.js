@@ -78,10 +78,11 @@ export class CheckboxesMethods {
     cy.get(':nth-child(2) > .oxd-checkbox-wrapper > label > .oxd-checkbox-input > .oxd-icon').click()
     cy.get(':nth-child(1) > .oxd-form > .oxd-form-actions > .oxd-button').click()
     cy.get('.orangehrm-card-container > .oxd-form > .oxd-form-row > .oxd-grid-3 > .oxd-grid-item > .oxd-input-group > :nth-child(2) > .oxd-select-wrapper > .oxd-select-text').click({ multiple: true }) // Use { multiple: true } to allow clicking multiple elements
-    cy.contains('A+').click()
+    cy.contains('A+').should('be.visible').click()
     cy.get('.orangehrm-card-container > .oxd-form > .oxd-form-actions > .oxd-button').click()
     cy.get('.orangehrm-action-header > .oxd-button').click()
-    cy.get('.oxd-file-input-div').selectFile(filePath, { force: true });
+    cy.get('[class="oxd-file-input"]').selectFile(filePath, { force: true });
+    cy.get('.orangehrm-attachment > .orangehrm-card-container > .oxd-form > .oxd-form-actions > .oxd-button--secondary').click()
 
 
 
