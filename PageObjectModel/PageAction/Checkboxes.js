@@ -18,8 +18,8 @@ export class CheckboxesMethods {
     cy.get('.orangehrm-header-container > .oxd-button').click();
     cy.get('body > div:nth-child(3) > div:nth-child(1) > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > form:nth-child(3) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > i:nth-child(1)').click().wait(3000);
     cy.contains("ESS").click();
-    cy.get('.oxd-autocomplete-text-input > input').type('O').wait(3000)
-    cy.contains('Odis Adalwin').click()
+    cy.get('.oxd-autocomplete-text-input > input').type('a').wait(3000)
+    cy.get('.oxd-autocomplete-dropdown > :nth-child(1)').click()
     cy.get('body > div:nth-child(3) > div:nth-child(1) > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > form:nth-child(3) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3)').click().wait(3090)
     cy.contains("Enabled").click()
     const uniqueValue = this.generateRandomString(5); {
@@ -30,24 +30,27 @@ export class CheckboxesMethods {
     cy.get('.user-password-row > .oxd-grid-2 > :nth-child(2) > .oxd-input-group').type('Admin@12')
     cy.get('.oxd-button--secondary').click().wait(5000)
     this.findValue("uniqueValue", 5);
-
-
   }
+
   findValue(value, remainingAttempts) {
+    let isValueFound = false;
+
     cy.get("div[class='oxd-input-group oxd-input-field-bottom-space'] div input[class='oxd-input oxd-input--active']").clear().type(value);
     cy.get('.oxd-form-actions > .oxd-button--secondary').click();
-    Cypress.on('uncaught:exception', (err, runnable) => {
-      // returning false here prevents Cypress from
-      // failing the test
-      return false
-    })
-    cy.get('.orangehrm-container').contains(value).should('be.visible').then((result) => {
-      cy.log(result, 'Test')
-      // Element is not visible, revalidate
-      if (!result && remainingAttempts > 0) {
-        this.findValue(value, remainingAttempts - 1);
-      }
-    })
+    cy.get('.orangehrm-container').contains(value).should('be.visible')
+      .then((result) => {
+        cy.log(result, 'Test');
+        // Element is not visible, revalidate
+        if (!result && remainingAttempts > 0) {
+          this.findValue(value, remainingAttempts - 1);
+        }
+      })
+    isValueFound = true | false;
+    if (!isValueFound) {
+      this.findValue(value, remainingAttempts - 1);
+    } else {
+      return;
+    }
   }
   UpdatePersanolDetails() {
     cy.get('[name="username"]').type("admin");

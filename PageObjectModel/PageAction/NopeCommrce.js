@@ -1,5 +1,5 @@
 export class Nopecoommerce {
-    Buildyourowncomputer() {
+    static Buildyourowncomputer() {
         cy.get(':nth-child(1) > .product-item > .picture > a > img').click()
         cy.get('#product_attribute_1').should('be.visible').wait(3000).select('2.2 GHz Intel Pentium Dual-Core E2200')
         cy.get('#product_attribute_2').should('be.visible').wait(3000).select('4GB [+$20.00]')
@@ -11,7 +11,7 @@ export class Nopecoommerce {
         cy.get('#add-to-cart-button-1').click()
         this.Addtocarddetails()
     }
-    Addtocarddetails() {
+    static Addtocarddetails() {
         cy.get('.content').should('contain', 'The product has been added to your shopping cart')
         cy.log('After getting the .content element')
         cy.get('.content > a').should('be.visible').click()
@@ -42,7 +42,7 @@ export class Nopecoommerce {
         cy.get('#confirm-order-buttons-container > .button-1').click()
         cy.get('.section > .title > strong').contains('Your order has been successfully processed!')
     }
-    Addshoestfilter() {
+    static Addshoestfilter() {
         cy.get('.notmobile > :nth-child(3) > [href="/apparel"]').wait(3000).click();
         cy.get(':nth-child(1) > .sub-category-item > .title > a').click()
         cy.get('#attribute-option-15').should('be.visible').click().wait(2000)
@@ -52,7 +52,7 @@ export class Nopecoommerce {
         cy.get('#add-to-cart-button-25').click({ force: true }).wait(2000)
         this.Addtocarddetails()
     }
-    Addtowishlist() {
+    static Addtowishlist() {
         cy.get('.notmobile > :nth-child(3) > [href="/apparel"]').wait(3000).click();
         cy.get(':nth-child(1) > .sub-category-item > .title > a').click()
         cy.get('#attribute-option-15').should('be.visible').click().wait(2000)
