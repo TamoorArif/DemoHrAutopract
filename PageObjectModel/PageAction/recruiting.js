@@ -12,7 +12,6 @@ export class recruiting {
         cy.contains('button', 'Add New Category').click()
         cy.get('#\\:r9\\:').click().type('Test Automation')
         cy.contains('Next').eq(0).click();
-        // const
         cy.get('input[type="file"]').selectFile('cypress/fixtures/caniddate.csv', { force: true });
         cy.get("button[type='submit']").click()
         cy.get('#\\:ra\\:').click()
@@ -22,6 +21,9 @@ export class recruiting {
         cy.contains('.MuiTypography-root', 'Test automation')
 
 
+
+    }
+    static nagativeTest() {
 
     }
 }
