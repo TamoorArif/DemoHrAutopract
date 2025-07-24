@@ -19,11 +19,24 @@ export class recruiting {
         // cy.get(':nth-child(6) > .css-wkp18m > .css-zaltu2 > .MuiTypography-root').contains('Test automation').should('be.visible')
         // cy.get('[data-cy="automation-title"]').should('be.visible');
         cy.contains('.MuiTypography-root', 'Test automation')
+        cy.get('.css-11nhdni').contains("Test automation")
 
 
 
     }
     static nagativeTest() {
+        cy.contains('a', 'Configuration').click();
+        cy.contains('p', 'Custom Options').click()
+        cy.get('[href="/configuration/custom-options/candidates"]').click().wait(3000)
+        cy.get(':nth-child(2) > .MuiButtonBase-root').click().wait(3000)
+        // cy.get('[type="text"]').click().type('Test automation').wait(3000)
+        cy.contains('button', 'Add New Category').click()
+        cy.get('input[type="text"]').first().should('be.visible').click().type('Invalid Format Test')
+        cy.contains('Next').eq(0).click();
+        cy.get('input[type="file"]').selectFile('cypress/fixtures/Test.jpg', { force: true });
+        cy.get("button[type='submit']").click();
+        cy.get('form > .MuiGrid-container').contains('File is required').should('be.visible')
+
 
     }
 }
